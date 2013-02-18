@@ -9,8 +9,7 @@ require({
 }, [
 
 // Load specs
-'test/sample.spec',
-'test/greeter.spec' // Add your test here
+'test/sample.spec'
 ], function() {
   'use strict';
   

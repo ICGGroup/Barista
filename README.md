@@ -70,15 +70,25 @@ brew update
 brew install mongodb
 ```
 
-Follow the Homebrew instructions to have mongo db start automatically.
+Follow the Homebrew instructions to have mongo db start automatically.  In case you missed them, enter the following command to set MongoDB to start automatically:
 
-To make sure MongoDB is running:
+```
+ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+```
+
+Now start MongoDB using the LaunchAgent you just configured
+
+```
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+```
+
+Now, MongoDB should be running.  to make sure:
 
 ```
 mongo
 ```
 
-If MongoDB is running and all is well you will see somthing like this
+If MongoDB is running and all is well you will see something like this
 
 ```
 MongoDB shell version: 2.2.3
@@ -94,6 +104,16 @@ Questions? Try the support group
 
 ```Ctrl-C``` to quit.
 
+### [PhantomJS](http://phantomjs.org/)
+
+PhantomJS is a headless WebKit with JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.
+PhantomJS is created by Ariya Hidayat.
+
+Install it using Homebrew
+
+```
+brew install phantomjs
+```
 
 ### [Yeoman](http://yeoman.io/)
 
@@ -174,7 +194,7 @@ If you are going to modify or make contribution to Barista itself, you can simpl
 
 If you are going to use Barista as the basis for a new project, you will probably not want to fork the repository, rather you will want to add Barista as a remote and pull the contents into your project.  Since this is likely the most common pattern, let's walk through those steps.  Follow along with your own repo.
 
-First, go to Github and create your own repo.  Now you can clone this new repository.  In the terminal, navigate to the directory into which you want the repository cloned:
+First, go to Github and create your own repo.  Now you can clone this new repository.  In the terminal, navigate to the directory into which you want your new repository cloned:
 
 ```
 git clone [Your Github Repo URL]
@@ -189,7 +209,7 @@ cd [Your Repo Directory]
 Now you can add Barista as a remote and pull the contents for your new repository from there.
 
 ```
-git remote add barista git@github.com:ICGGroup/Barista.git
+git remote add barista https://github.com/ICGGroup/Barista.git
 ```
 
 Now pull from Barista.  
@@ -212,7 +232,7 @@ That's it, now you are ready to use NPM to install the necessary components.
 Installing the required node modules is very easy and can be accomplished with a single command
 
 ```
-npm install
+sudo npm install
 ```
 
 If you are interested in what the dependencies are, have a peek at ```package.json```.
@@ -225,7 +245,7 @@ yeoman server
 
 ### Installing Pre-commit Hooks
 
-We encourage all developers to use the standard pre-committ hook.  Since pre-commit hooks are not pushed with your commits nore are included when the repository is cloned, we have made the standard commit hook available in the root of the repo.  Wire this up with your local report using the following command:
+We encourage all developers to use the standard pre-commit hook.  Since pre-commit hooks are not pushed with your commits nor are included when the repository is cloned, we have made the standard commit hook available in the root of the repo.  Wire this up with your local report using the following command:
 
 ```
 ln -s ../../pre-commit.sh .git/hooks/pre-commit
