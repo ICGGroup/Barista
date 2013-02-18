@@ -4,7 +4,7 @@
     "use strict";
     return describe("module", function() {
       return it("is awesome", function() {
-        return expect(window.something).to.be("TOTALLY AWESOME");
+        return expect(window.something).to.be("AWESOME");
       });
     });
   });
